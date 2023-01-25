@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exclusão de arquivos</title>
+    <style>
+        body {
+          background-image: url('/tela-fundo.jpg');
+            text-align: center;
+        }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        li {
+            display: block;
+            margin: 10px;
+        }
+        form {
+            display: block;
+            margin: 10px;
+        }
+        input {
+            width: 90%;
+            height: 30px;
+            font-size: 18px;
+            margin: 10px;
+        }
+        button {
+            background-color: #ebc5d5;
+            width: 10%;
+            height: 40px;
+            font-size: 20px;
+            margin: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            border: 0px solid black;
+        }
+        button:hover {
+            background-color: #ff00bf;
+            cursor:pointer;
+            color: aliceblue;
+        }
+        button.back {
+            background-color: rgb(255, 0, 157);
+            color: rgb(253, 253, 253);
+            font-size: 18px;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            width: 25%;
+            border: 1px solid black;
+        }
+    </style>
+  </head>
+  <body>
+    <ul>
+        <% for (var i = 0; i < files.length; i++) { %>
+          <li>
+            <%= files[i] %>
+            <form action="/delete" method="post" enctype="multipart/form-data">
+              <input type="hidden" name="file" value="<%= files[i] %>">
+              <button type="submit">Excluir</button>
+            </form>
+          </li>
+        <% } %>
+    </ul> 
+    <div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <a href="/upload"><button class="back" >Voltar para Upload</button></a>
+    </div>   
+  </body>
+</html>

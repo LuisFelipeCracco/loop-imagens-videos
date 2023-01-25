@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Minha página com imagem</title>
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+    <style>
+        /* Estilos CSS para os elementos de vídeo e imagem */
+  #media-container {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  #media-container img, #media-container video {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+  }
+  #media-container img.active, #media-container video.active {
+    display: block;
+  }
+    </style>
+  </head>
+  <body>
+    <div id="media-container">
+    <% for(let i = 0; i < mediaItems.length; i++) { %>
+        <% if(mediaItems[i].endsWith('.png') || mediaItems[i].endsWith('.jpg')) { %>
+            <img src="images/<%= mediaItems[i] %>" class="<%= i === 0 ? 'active' : '' %>">
+        <% } else if(mediaItems[i].endsWith('.mp4')) { %>
+            <video id="video1" controls muted>
+                <source src="images/<%= mediaItems[i] %>" type="video/mp4">
+                Seu navegador não suporta vídeo
+            </video>
+        <% } %>
+    <% } %>
+    </div>
+    <script>
+    var currentIndex = 0;
+    var items = document.querySelectorAll("#media-container img, #media-container video");
+
+    function loop() {
+      if(items[currentIndex].tagName == "VIDEO") {
+        items[currentIndex].removeEventListener("timeupdate", checkEnd);
+      }
+      items[currentIndex].classList.remove("active");
+      currentIndex = currentIndex + 1 >= items.length ? 0 : currentIndex + 1;
+      items[currentIndex].classList.add("active");
+      if(items[currentIndex].tagName == "VIDEO") {
+        items[currentIndex].play();
+        items[currentIndex].addEventListener("timeupdate", checkEnd);
+      }else{
+        setTimeout(loop,30000);
+      }
+    }
+    
+    function checkEnd() {
+      if (this.currentTime >= this.duration) {
+        loop();
+      }
+    }
+    loop();
+    setInterval(() => {
+        location.reload();
+    }, 720000); //12 minutos
+    </script>
+  </body>
+</html>
+

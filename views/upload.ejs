@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Upload de arquivos</title>
+    <style>
+        body {
+            background-image: url('/tela-fundo.jpg');
+            text-align: center;
+            padding: 5%;
+            background-size: cover;
+        }
+        form {
+            display: block;
+            margin: 10px;
+        }
+        input {
+            height: 30px;
+            font-size: 18px;
+            margin: 10px;
+        }
+        button {
+            background-color: #f0d9e3;
+            width: 10%;
+            height: 40px;
+            font-size: 20px;
+            margin: 8px;
+            border-radius: 5px;
+            font-weight: bold;
+            border: none;
+        }
+        button:hover {
+            background-color: #ff00bf;
+            cursor:pointer;
+            color: rgb(238, 238, 238);
+        }
+        button.back {
+            background-color: rgb(255, 0, 157);
+            color: rgb(253, 253, 253);
+            font-size: 18px;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            width: 25%;
+            border: 1px solid black;
+        }
+    </style>
+  </head>
+  <body class="center">
+    <form action="/upload" method="post" enctype="multipart/form-data">
+      <input type="file" name="file">
+      <button type="submit">Enviar</button>
+    </form>
+    <div>
+      <br><br><br><br><br><br><br><br>
+      <form action="/delete"> <button type="submit" class="back">Voltar para exclusão</button> </form>
+    </div>
+    
+    
+  </body>
+</html>
